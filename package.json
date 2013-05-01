@@ -1,0 +1,39 @@
+{
+  "name": "waringo-henrich-smooth",
+  "description": "Functions for smoothing a path of 2D coordinates using the method described by Michel Waringo and Dominik Henrich.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/davesque/waringo-henrich-smooth",
+  "author": {
+    "name": "David Sanders",
+    "email": "davesque@gmail.com",
+    "url": "www.charlesdavidsanders.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/davesque/waringo-henrich-smooth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davesque/waringo-henrich-smooth/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/davesque/waringo-henrich-smooth/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/waringo-henrich-smooth.js",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt": "~0.4.0",
+    "underscore": "~1.4.4"
+  },
+  "keywords": []
+}
