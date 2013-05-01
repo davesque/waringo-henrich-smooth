@@ -11,10 +11,15 @@ module.exports = function(grunt) {
         vendor: 'vendor/**/*.js',
       }
     },
+    watch: {
+      files: ['**/*.js'],
+      tasks: ['jasmine'],
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default');
+  grunt.registerTask('default', 'jasmine', 'watch');
 
 };

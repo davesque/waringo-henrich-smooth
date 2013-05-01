@@ -14,6 +14,6 @@ describe("findNeighborhood", function() {
   var findNeighborhood = window.findNeighborhood;
 
   it("should find the correct neighborhood for a point", function() {
-    expect(findNeighborhood(COORDS, 5)).toEqual([2, 4]);
+    expect(findNeighborhood(COORDS, 5)).toEqual([2, 5]);
   });
 });

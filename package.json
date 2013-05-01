@@ -29,7 +29,8 @@
   "devDependencies": {
     "grunt": "~0.4.0",
     "underscore": "~1.4.4",
-    "grunt-contrib-jasmine": "~0.4.2"
+    "grunt-contrib-jasmine": "~0.4.2",
+    "grunt-contrib-watch": "~0.3.1"
   },
   "keywords": []
 }
