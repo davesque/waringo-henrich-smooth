@@ -25,15 +25,11 @@
   "engines": {
     "node": ">= 0.6.0"
   },
-  "scripts": {
-    "test": "grunt nodeunit"
-  },
+  "scripts": {},
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-watch": "~0.2.0",
     "grunt": "~0.4.0",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "grunt-contrib-jasmine": "~0.4.2"
   },
   "keywords": []
 }

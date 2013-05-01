@@ -1,5 +1,7 @@
+/*globals _*/
+
 /*
- * waringo-henrich.js
+ * waringo-henrich-smooth.js
  * https://github.com/davesque/waringo-henrich-smooth
  *
  * Implementation code is subject to the following copyright and license:
@@ -16,11 +18,6 @@
  *
  * http://cdn.intechopen.com/pdfs/4283/InTech-Smoothing_of_piecewise_linear_paths.pdf
  */
-
-'use strict';
-
-var _ = require("underscore");
-
 
 /**
  * Finds the indexes of neighboring, non-removed points for the point at the
@@ -43,17 +40,8 @@ function findNeighborhood(coords, j) {
   return [i, k];
 }
 
-
 /**
- * Smooths a list of 2D coordinates using the method described in the
- * following article:
- *
- * Smoothing of Piecewise Linear Paths
- * Michel Waringo and Dominik Henrich
- * University of Bayreuth, Germany
- * International Journal of Advanced Robotic Systems, Vol.5, No. 3 (2008)
- *
- * http://cdn.intechopen.com/pdfs/4283/InTech-Smoothing_of_piecewise_linear_paths.pdf
+ * Smooths a list of 2D coordinates.
  */
 function waringoHenrichSmooth(coords) {
   // Get a copy of the original path
@@ -64,7 +52,3 @@ function waringoHenrichSmooth(coords) {
 
   return coords;
 }
-
-
-exports.findNeighborhood = findNeighborhood;
-exports.waringoHenrichSmooth = waringoHenrichSmooth;
