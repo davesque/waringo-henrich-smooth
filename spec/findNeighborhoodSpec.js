@@ -1,4 +1,3 @@
-/*jshint es5: true*/
 /*globals describe, it, expect*/
 
 describe("findNeighborhood", function() {
@@ -9,7 +8,7 @@ describe("findNeighborhood", function() {
     {x: 0, y: 0, remove: true},  // 3
     {x: 0, y: 0, remove: false}, // 4
     {x: 0, y: 0, remove: false}, // 5
-    {x: 0, y: 0, remove: true},  // 6
+    {x: 0, y: 0, remove: true}   // 6
   ];
 
   var COORDS2 = [
@@ -25,7 +24,7 @@ describe("findNeighborhood", function() {
     {x: 0, y: 0, remove: true},  // 9
     {x: 0, y: 0, remove: false}, // 10
     {x: 0, y: 0, remove: true},  // 11
-    {x: 0, y: 0, remove: true},  // 12
+    {x: 0, y: 0, remove: true}   // 12
   ];
 
   var findNeighborhood = window.findNeighborhood;
