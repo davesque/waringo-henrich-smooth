@@ -21,6 +21,15 @@
 
 
 /**
+ * Returns the root mean square of the numeric values in a list `l`.
+ */
+function rootMeanSquare(l) {
+  l = _.map(l, function(i) { return i * i; });
+  return Math.sqrt(_.reduce(l, function(a, i) { return a + i; }, 0) / l.length);
+}
+
+
+/**
  * Returns the distance between a point `p1` and a point `p2`.
  */
 function pointToPointDistance(p1, p2) {
@@ -107,14 +116,55 @@ function findNeighborhood(coords, j) {
 
 
 /**
+ * Returns the root mean square deviation for the neighborhood of points
+ * specified by the given array of point indexes.
+ */
+function rootMeanSquareK(coords, neighborhood) {
+}
+
+
+/**
  * Smooths a list of 2D coordinates.
  */
-function waringoHenrichSmooth(coords) {
+function waringoHenrichSmooth(coords, dLim) {
+  var i, j;
+  var neighborhood;
+  var smallest;
+  var nonRemoved;
+
+  function getRemoved(i) { return i.remove === false; }
+  function getDeviation(i) { return i.deviation; }
+
+  if ( coords.length < 3 ) return coords;
+
   // Get a copy of the original path
-  var origCoords = _.map(coords, _.clone);
+  var wCoords = _.map(coords, _.clone);
 
-  // Mark all points as not having been removed
-  _.each(coords, function(c) { c.remove = false; });
+  // Mark all points as not having been removed and make note of their order in
+  // the path list
+  _.each(wCoords, function(c) { c.remove = false; });
 
-  return coords;
+  // Begin examining points
+  while ( true ) {
+    for ( i = 1; i < wCoords.length - 1; i++ ) {
+      // If this point was removed, don't bother calculating its deviation
+      if ( wCoords[i].remove ) continue;
+
+      neighborhood = findNeighborhood(wCoords, i);
+      wCoords[i].deviation = rootMeanSquareK(wCoords, neighborhood);
+    }
+
+    nonRemoved = _.filter(wCoords, getRemoved);
+    smallest = _.min(nonRemoved, getDeviation);
+
+    // Remove the point with the smallest deviation if that deviation is less
+    // than the limit.  Otherwise, quite smoothing.
+    if ( smallest.deviation < dLim ) smallest.remove = true;
+    else break;
+  }
+
+  return _.map(
+    _.filter(wCoords, function(i) { return i.remove === false; }),
+    function(i) { return {x: i.x, y: i.y}; }
+  );
 }
