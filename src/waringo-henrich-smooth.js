@@ -21,15 +21,6 @@
 
 
 /**
- * Returns the root mean square of the numeric values in a list `l`.
- */
-function rootMeanSquare(l) {
-  l = _.map(l, function(i) { return i * i; });
-  return Math.sqrt(_.reduce(l, function(a, i) { return a + i; }, 0) / l.length);
-}
-
-
-/**
  * Returns the distance between a point `p1` and a point `p2`.
  */
 function pointToPointDistance(p1, p2) {
@@ -116,6 +107,15 @@ function findNeighborhood(coords, j) {
 
 
 /**
+ * Returns the root mean square of the numeric values in a list `l`.
+ */
+function rootMeanSquare(l) {
+  l = _.map(l, function(i) { return i * i; });
+  return Math.sqrt(_.reduce(l, function(a, i) { return a + i; }, 0) / l.length);
+}
+
+
+/**
  * Returns the root mean square deviation for the neighborhood of points
  * specified by the given array of point indexes.
  */
@@ -124,47 +124,49 @@ function rootMeanSquareK(coords, neighborhood) {
 
 
 /**
- * Smooths a list of 2D coordinates.
+ * Smooths a 2D linear path described by a list of points to within the
+ * specified maximum deviation `dLim`.
  */
-function waringoHenrichSmooth(coords, dLim) {
-  var i, j;
-  var neighborhood;
+function waringoHenrichSmooth(points, dLim) {
   var smallest;
-  var nonRemoved;
+  var removable, remaining;
 
-  function getRemoved(i) { return i.remove === false; }
-  function getDeviation(i) { return i.deviation; }
+  // Helper functions
+  function isNotRemoved(p) { return p.r === false; }
+  function getDeviation(p) { return p.d; }
+  function setDeviation(p) {
+    var neighborhood = findNeighborhood(points, p.i);
+    p.d = rootMeanSquareK(points, neighborhood);
+  }
 
-  if ( coords.length < 3 ) return coords;
+  // Get a copy of the original path points
+  points = _.map(points, _.clone);
 
-  // Get a copy of the original path
-  var wCoords = _.map(coords, _.clone);
+  // Mark all points as not having been removed and make note of their index
+  _.each(points, function(p, i) { p.r = false; p.i = i; });
 
-  // Mark all points as not having been removed and make note of their order in
-  // the path list
-  _.each(wCoords, function(c) { c.remove = false; });
+  // Get all inner points
+  removable = _.rest(_.initial(points));
 
-  // Begin examining points
   while ( true ) {
-    for ( i = 1; i < wCoords.length - 1; i++ ) {
-      // If this point was removed, don't bother calculating its deviation
-      if ( wCoords[i].remove ) continue;
+    // Find remaining points which have not been marked for removal
+    remaining = _.filter(removable, isNotRemoved);
 
-      neighborhood = findNeighborhood(wCoords, i);
-      wCoords[i].deviation = rootMeanSquareK(wCoords, neighborhood);
-    }
+    // If none left, quit smoothing
+    if ( _.isEmpty(remaining) ) break;
 
-    nonRemoved = _.filter(wCoords, getRemoved);
-    smallest = _.min(nonRemoved, getDeviation);
+    // Calculate deviations and find point with smallest deviation
+    _.each(remaining, setDeviation);
+    smallest = _.min(remaining, getDeviation);
 
     // Remove the point with the smallest deviation if that deviation is less
-    // than the limit.  Otherwise, quite smoothing.
-    if ( smallest.deviation < dLim ) smallest.remove = true;
+    // than the limit.  Otherwise, quit smoothing.
+    if ( smallest.d < dLim ) smallest.r = true;
     else break;
   }
 
   return _.map(
-    _.filter(wCoords, function(i) { return i.remove === false; }),
-    function(i) { return {x: i.x, y: i.y}; }
+    _.filter(points, isNotRemoved),
+    function(p) { return {x: p.x, y: p.y}; }
   );
 }
