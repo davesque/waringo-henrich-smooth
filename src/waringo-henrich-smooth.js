@@ -107,11 +107,19 @@ function findNeighborhood(coords, j) {
 
 
 /**
- * Returns the root mean square of the numeric values in a list `l`.
+ * Returns the sum of values in a list `l`.
+ */
+function sum(l) {
+  return _.reduce(l, function(a, i) { return a + i; }, 0);
+}
+
+
+/**
+ * Returns the root mean square of values in a list `l`.
  */
 function rootMeanSquare(l) {
   l = _.map(l, function(i) { return i * i; });
-  return Math.sqrt(_.reduce(l, function(a, i) { return a + i; }, 0) / l.length);
+  return Math.sqrt(sum(l) / l.length);
 }
 
 
@@ -150,7 +158,7 @@ function waringoHenrichSmooth(points, dLim) {
   function getDeviation(p) { return p.d; }
   function setDeviation(p) {
     var neighborhood = findNeighborhood(points, p.i);
-    p.d = rootMeanSquareK(points, neighborhood);
+    p.d = rootMeanSquareK(points, neighborhood[0], neighborhood[1]);
   }
 
   // Copy the original path points
