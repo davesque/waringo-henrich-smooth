@@ -105,6 +105,7 @@ function findNeighborhood(coords, j) {
   return [i, k];
 }
 
+
 /**
  * Smooths a list of 2D coordinates.
  */
