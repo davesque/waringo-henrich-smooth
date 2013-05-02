@@ -26,6 +26,11 @@
 function findNeighborhood(coords, j) {
   var removed, left, right, i, k;
 
+  if ( _.isEmpty(coords) ) return [-1, -1];
+
+  if ( j < 0 ) j = 0;
+  else if ( j >= coords.length ) j = coords.length - 1;
+
   removed = _.pluck(coords, "remove");
 
   left = _.first(removed, j);
@@ -34,8 +39,7 @@ function findNeighborhood(coords, j) {
   i = _.lastIndexOf(left, false);
   k = _.indexOf(right, false);
 
-  i = i === -1 ? j : i;
-  k = k === -1 ? j : k + j + 1;
+  if ( k !== -1 ) k += j + 1;
 
   return [i, k];
 }
