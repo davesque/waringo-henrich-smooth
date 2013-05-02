@@ -116,16 +116,30 @@ function rootMeanSquare(l) {
 
 
 /**
- * Returns the root mean square deviation for the neighborhood of points
- * specified by the given array of point indexes.
+ * Returns the root mean square deviation for the exclusive range
+ * (neighborhood) of points specified by the given start and end indexes.
  */
-function rootMeanSquareK(coords, neighborhood) {
+function rootMeanSquareK(points, start, end) {
+  var neighborhood = points.slice(start + 1, end);
+
+  // Get deviations for all points inside of the neighborhood's range
+  var ds = _.map(neighborhood, function(p) {
+    return pointToLineDistance(
+      points[p.i - 1],
+      points[p.i],
+      points[p.i + 1]
+    );
+  });
+
+  // Return root mean square of point deviations
+  return rootMeanSquare(ds);
 }
 
 
 /**
- * Smooths a 2D linear path described by a list of points to within the
- * specified maximum deviation `dLim`.
+ * Smooths a piecewise linear path described by a list of 2D points to within
+ * the specified maximum deviation `dLim` determined by invoking the error
+ * function `K`.
  */
 function waringoHenrichSmooth(points, dLim) {
   var smallest;
@@ -139,14 +153,14 @@ function waringoHenrichSmooth(points, dLim) {
     p.d = rootMeanSquareK(points, neighborhood);
   }
 
-  // Get a copy of the original path points
+  // Copy the original path points
   points = _.map(points, _.clone);
 
   // Mark all points as not having been removed and make note of their index
   _.each(points, function(p, i) { p.r = false; p.i = i; });
 
-  // Get all inner points
-  removable = _.rest(_.initial(points));
+  // Get all inner points which might be removed
+  removable = points.slice(1, -1);
 
   while ( true ) {
     // Find remaining points which have not been marked for removal
@@ -165,6 +179,7 @@ function waringoHenrichSmooth(points, dLim) {
     else break;
   }
 
+  // Return x and y coordinates for all remaining points
   return _.map(
     _.filter(points, isNotRemoved),
     function(p) { return {x: p.x, y: p.y}; }
