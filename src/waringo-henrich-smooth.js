@@ -26,7 +26,7 @@
 function findNeighborhood(coords, j) {
   var removed, left, right, i, k;
 
-  removed = _.pluck(coords, 'remove');
+  removed = _.pluck(coords, "remove");
 
   left = _.first(removed, j);
   right = _.rest(removed, j + 1);
