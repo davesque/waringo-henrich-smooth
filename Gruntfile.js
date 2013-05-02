@@ -1,3 +1,5 @@
+/*jshint es5: true*/
+
 'use strict';
 
 module.exports = function(grunt) {
@@ -20,6 +22,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', 'jasmine', 'watch');
+  grunt.registerTask('default', 'watch');
 
 };
