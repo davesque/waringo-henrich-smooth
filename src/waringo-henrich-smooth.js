@@ -21,6 +21,30 @@
 
 
 /**
+ * Returns the distance between a point `p1` and a point `p2`.
+ */
+function pointToPointDistance(p1, p2) {
+  var d;
+
+  if ( p1.x === p2.x && p1.y === p2.y ) {
+    // Special case for p1 == p2
+    return 0;
+  } else if ( p1.x === p2.x ) {
+    // Special case for slope infinity
+    d = p2.y - p1.y;
+  } else if ( p1.y === p2.y ) {
+    // Special case for slope 0
+    d = p2.x - p1.x;
+  } else {
+    // Normal case
+    d = Math.sqrt(Math.pow(p2.y - p1.y, 2) + Math.pow(p2.x - p1.x, 2));
+  }
+
+  return Math.abs(d);
+}
+
+
+/**
  * Returns the distance between a point `p2` and the line formed by two points
  * `p1` and `p3`.
  */
