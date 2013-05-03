@@ -127,17 +127,16 @@ function rootMeanSquare(l) {
  * Returns the root mean square deviation for the exclusive range
  * (neighborhood) of points specified by the given start and end indexes.
  */
-function rootMeanSquareK(points, start, end) {
-  var neighborhood = points.slice(start + 1, end);
-
+function rootMeanSquareError(points, start, end) {
   // Get deviations for all points inside of the neighborhood's range
-  var ds = _.map(neighborhood, function(p) {
-    return pointToLineDistance(
-      points[p.i - 1],
-      points[p.i],
-      points[p.i + 1]
-    );
-  });
+  var ds = [];
+  for ( var i = start + 1; i < end; i++ ) {
+    ds.push(pointToLineDistance(
+      points[start],
+      points[i],
+      points[end]
+    ));
+  }
 
   // Return root mean square of point deviations
   return rootMeanSquare(ds);
@@ -158,7 +157,7 @@ function waringoHenrichSmooth(points, dLim) {
   function getDeviation(p) { return p.d; }
   function setDeviation(p) {
     var neighborhood = findNeighborhood(points, p.i);
-    p.d = rootMeanSquareK(points, neighborhood[0], neighborhood[1]);
+    p.d = rootMeanSquareError(points, neighborhood[0], neighborhood[1]);
   }
 
   // Copy the original path points
