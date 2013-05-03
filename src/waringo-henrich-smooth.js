@@ -83,15 +83,15 @@ function pointToLineDistance(p1, p2, p3) {
  * Finds the indexes of neighboring, non-removed points for the point at index
  * `j` in the point list `points`.
  */
-function findNeighborhood(coords, j) {
+function findNeighborhood(points, j) {
   var removed, left, right, i, k;
 
-  if ( _.isEmpty(coords) ) return [-1, -1];
+  if ( _.isEmpty(points) ) return [-1, -1];
 
   if ( j < 0 ) j = 0;
-  else if ( j >= coords.length ) j = coords.length - 1;
+  else if ( j >= points.length ) j = points.length - 1;
 
-  removed = _.pluck(coords, "r");
+  removed = _.pluck(points, "r");
 
   left = _.first(removed, j);
   right = _.rest(removed, j + 1);
