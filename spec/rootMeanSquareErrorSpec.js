@@ -27,17 +27,17 @@ describe("rootMeanSquareError", function() {
     expect(rootMeanSquareError(POINTS1, 0, 2)).toEqual(5);
     expect(rootMeanSquareError(POINTS1, 0, 3)).toBeCloseTo(3.5355, 4);
     expect(rootMeanSquareError(POINTS1, 0, 6)).toBeCloseTo(3.1623, 4);
-    expect(rootMeanSquareError(POINTS2, 0, 6)).toBeCloseTo(104.8431, 4);
+    expect(rootMeanSquareError(POINTS2, 0, 6)).toBeCloseTo(95.9779, 4);
   });
 
   it("should return a correct value even if the start and end indexes are too small or too large", function() {
     expect(rootMeanSquareError(POINTS1, -100, 100)).toBeCloseTo(3.1623, 4);
-    expect(rootMeanSquareError(POINTS2, -100, 100)).toBeCloseTo(104.8431, 4);
+    expect(rootMeanSquareError(POINTS2, -100, 100)).toBeCloseTo(95.9779, 4);
   });
 
   it("should return a correct value even if the start and end indexes are swapped (they still specify a valid range)", function() {
     expect(rootMeanSquareError(POINTS1, 100, -100)).toBeCloseTo(3.1623, 4);
-    expect(rootMeanSquareError(POINTS2, 100, -100)).toBeCloseTo(104.8431, 4);
+    expect(rootMeanSquareError(POINTS2, 100, -100)).toBeCloseTo(95.9779, 4);
   });
 
   it("should return NaN for a zero-length range", function() {
