@@ -80,8 +80,8 @@ function pointToLineDistance(p1, p2, p3) {
 
 
 /**
- * Finds the indexes of neighboring, non-removed points for the point at the
- * given index in the given coordinate list.
+ * Finds the indexes of neighboring, non-removed points for the point at index
+ * `j` in the point list `points`.
  */
 function findNeighborhood(coords, j) {
   var removed, left, right, i, k;
