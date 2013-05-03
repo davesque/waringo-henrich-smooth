@@ -1,14 +1,7 @@
-/*globals Raphael, POINTS1, POINTS2*/
+/*globals Raphael, POINTS1, POINTS2, waringoHenrichSmooth*/
 
-/**
- * Correctly detect mouse position of event relative to document top-left.
- * If argument `offsetElement` is specified, mouse position is relative to
- * top-left of that element.
- *
- * Based on code at quirksmode.org:
- * http://www.quirksmode.org/js/events_properties.html
- */
-function getEventMouseCoords(e, offsetElement) {
+
+function getEventMouseCoords(e) {
   var coords = {}, offset;
 
   if ( e.pageX || e.pageY ) {
@@ -19,18 +12,9 @@ function getEventMouseCoords(e, offsetElement) {
     coords.y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
   }
 
-  if ( offsetElement ) {
-    // Trust me, the ternary operator looks like crap
-    if ( offsetElement.tagName === "svg" )
-      offset = getSVGCanvasOffset(offsetElement);
-    else
-      offset = $(offsetElement).offset();
-    coords.x -= offset.left;
-    coords.y -= offset.top;
-  }
-
   return coords;
 }
+
 
 function getCanvasCoords(paper, coords) {
   var m = paper.canvas.getScreenCTM().inverse();
@@ -43,6 +27,7 @@ function getCanvasCoords(paper, coords) {
   return p;
 }
 
+
 var PAPER_WIDTH = 900;
 var PAPER_HEIGHT = 600;
 var DEFAULT_ZOOM = 2;
@@ -51,6 +36,7 @@ var ZP_OPTIONS = {
   maxZoomFactor: 100,
   mouseWheelSensitivity: 0.1
 };
+
 
 $(document).ready(function() {
   var paper = new Raphael($("#paper")[0], 900, 600);
@@ -86,7 +72,7 @@ $(document).ready(function() {
 
   function update() {
     var old = smoothedPoints.length;
-    smoothedPoints = waringoHenrichSmooth(smoothedPoints, 10, 10);
+    smoothedPoints = waringoHenrichSmooth(smoothedPoints, 2, 10);
 
     smoothed.setNumericPath(smoothedPoints);
 
