@@ -128,6 +128,17 @@ function rootMeanSquare(l) {
  * (neighborhood) of points specified by the given start and end indexes.
  */
 function rootMeanSquareError(points, start, end) {
+  if ( !points.length ) return NaN;
+
+  // Flip range indexes if start > end
+  if ( start > end ) start = [end, end = start][0];
+
+  // Limit range indexes
+  if ( start < 0 ) start = 0;
+  else if ( start >= points.length ) start = points.length - 1;
+  if ( end < 0 ) end = 0;
+  else if ( end >= points.length ) end = points.length - 1;
+
   // Get deviations for all points inside of the neighborhood's range
   var ds = [];
   for ( var i = start + 1; i < end; i++ ) {
