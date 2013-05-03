@@ -49,7 +49,7 @@ function pointToPointDistance(p1, p2) {
  * `p1` and `p3`.
  */
 function pointToLineDistance(p1, p2, p3) {
-  var a, b, C, d;
+  var m, b, d;
 
   if (
     p1.x === p2.x &&
@@ -70,10 +70,9 @@ function pointToLineDistance(p1, p2, p3) {
     d = p2.y - p1.y;
   } else {
     // Normal case
-    a = p3.y - p1.y;
-    b = p3.x - p1.x;
-    C = p1.y;
-    d = (a * p2.x + b * p2.y + C) / Math.sqrt(a * a + b * b);
+    m = (p3.y - p1.y) / (p3.x - p1.x);
+    b = p1.y - m * p1.x;
+    d = (p2.y  - m * p2.x - b) / Math.sqrt(m * m + 1);
   }
 
   return Math.abs(d);
