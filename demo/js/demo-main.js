@@ -43,8 +43,7 @@ $(document).ready(function() {
   paper.setViewBox(-109.98332849343623, -8.400000945726937, 225, 150).ZP(ZP_OPTIONS);
 
   $(paper.canvas).mousemove(function(e) {
-    var c = getEventMouseCoords(e);
-    c = getCanvasCoords(paper, c);
+    var c = getCanvasCoords(paper, getEventMouseCoords(e));
     $("#coords").html("x: " + c.x + "<br/>y: " + c.y);
   });
 
