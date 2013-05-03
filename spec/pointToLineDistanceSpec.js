@@ -29,7 +29,7 @@ describe("pointToLineDistance", function() {
     )).toEqual(1020);
   });
 
-  it("should return the correct distance when the line has length 0", function() {
+  it("should return the correct distance when the line has length 0 (point to point distance)", function() {
     expect(pointToLineDistance(
       {x: 0, y: 0},
       {x: 5, y: 0},
@@ -61,5 +61,30 @@ describe("pointToLineDistance", function() {
   });
 
   it("should return the correct distance between a point and a line that do not meet the above special criteria", function() {
+    expect(pointToLineDistance(
+      {x: 0, y: 0},
+      {x: 0, y: 1},
+      {x: 1, y: 1}
+    )).toBeCloseTo(0.7071, 4);
+    expect(pointToLineDistance(
+      {x: 0, y: 0},
+      {x: 5, y: 1},
+      {x: 10, y: 1}
+    )).toBeCloseTo(0.4975, 4);
+    expect(pointToLineDistance(
+      {x: 0, y: 0},
+      {x: 5, y: 1},
+      {x: 10, y: 1}
+    )).toBeCloseTo(0.4975, 4);
+    expect(pointToLineDistance(
+      {x: 0, y: 0},
+      {x: 6, y: 1.1},
+      {x: 10, y: 1}
+    )).toBeCloseTo(0.4975, 4);
+    expect(pointToLineDistance(
+      {x: -10, y: 10},
+      {x: -4, y: 8},
+      {x: -3, y: 5}
+    )).toBeCloseTo(1.8600, 4);
   });
 });
