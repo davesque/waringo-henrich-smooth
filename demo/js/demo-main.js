@@ -40,10 +40,7 @@ var ZP_OPTIONS = {
 
 $(document).ready(function() {
   var paper = new Raphael($("#paper")[0], 900, 600);
-  paper.setViewBox(
-    -109.98332849343623, -8.400000945726937, 225, 150
-  ).ZP(ZP_OPTIONS);
-  window.paper = paper;
+  paper.setViewBox(-109.98332849343623, -8.400000945726937, 225, 150).ZP(ZP_OPTIONS);
 
   $(paper.canvas).mousemove(function(e) {
     var c = getEventMouseCoords(e);
@@ -57,7 +54,6 @@ $(document).ready(function() {
     "stroke-linecap": "round",
     "stroke-linejoin": "round"
   });
-
   var smoothed = paper.path("M0 0").attr({
     "stroke-width": 2,
     "stroke": "rgba(255, 0, 0, 0.75)",
@@ -72,9 +68,9 @@ $(document).ready(function() {
 
   function update() {
     var old = smoothedPoints.length;
-    smoothedPoints = waringoHenrichSmooth(smoothedPoints, 2, 10);
+    smoothedPoints = waringoHenrichSmooth(smoothedPoints, 2);
 
-    smoothed.setNumericPath(smoothedPoints);
+    smoothed.setNumericPath(smoothedPoints, {pathCommand: "R"});
 
     $("#status").text("Points removed: " + (old - smoothedPoints.length));
   }
