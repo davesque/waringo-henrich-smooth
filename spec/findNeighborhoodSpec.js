@@ -2,29 +2,29 @@
 
 describe("findNeighborhood", function() {
   var COORDS1 = [
-    {x: 0, y: 0, remove: true},  // 0
-    {x: 0, y: 0, remove: true},  // 1
-    {x: 0, y: 0, remove: false}, // 2
-    {x: 0, y: 0, remove: true},  // 3
-    {x: 0, y: 0, remove: false}, // 4
-    {x: 0, y: 0, remove: false}, // 5
-    {x: 0, y: 0, remove: true}   // 6
+    {x: 0, y: 0, r: true},  // 0
+    {x: 0, y: 0, r: true},  // 1
+    {x: 0, y: 0, r: false}, // 2
+    {x: 0, y: 0, r: true},  // 3
+    {x: 0, y: 0, r: false}, // 4
+    {x: 0, y: 0, r: false}, // 5
+    {x: 0, y: 0, r: true}   // 6
   ];
 
   var COORDS2 = [
-    {x: 0, y: 0, remove: true},  // 0
-    {x: 0, y: 0, remove: true},  // 1
-    {x: 0, y: 0, remove: false}, // 2
-    {x: 0, y: 0, remove: true},  // 3
-    {x: 0, y: 0, remove: true},  // 4
-    {x: 0, y: 0, remove: false}, // 5
-    {x: 0, y: 0, remove: true},  // 6
-    {x: 0, y: 0, remove: false}, // 7
-    {x: 0, y: 0, remove: false}, // 8
-    {x: 0, y: 0, remove: true},  // 9
-    {x: 0, y: 0, remove: false}, // 10
-    {x: 0, y: 0, remove: true},  // 11
-    {x: 0, y: 0, remove: true}   // 12
+    {x: 0, y: 0, r: true},  // 0
+    {x: 0, y: 0, r: true},  // 1
+    {x: 0, y: 0, r: false}, // 2
+    {x: 0, y: 0, r: true},  // 3
+    {x: 0, y: 0, r: true},  // 4
+    {x: 0, y: 0, r: false}, // 5
+    {x: 0, y: 0, r: true},  // 6
+    {x: 0, y: 0, r: false}, // 7
+    {x: 0, y: 0, r: false}, // 8
+    {x: 0, y: 0, r: true},  // 9
+    {x: 0, y: 0, r: false}, // 10
+    {x: 0, y: 0, r: true},  // 11
+    {x: 0, y: 0, r: true}   // 12
   ];
 
   var findNeighborhood = window.findNeighborhood;

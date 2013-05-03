@@ -92,7 +92,7 @@ function findNeighborhood(coords, j) {
   if ( j < 0 ) j = 0;
   else if ( j >= coords.length ) j = coords.length - 1;
 
-  removed = _.pluck(coords, "remove");
+  removed = _.pluck(coords, "r");
 
   left = _.first(removed, j);
   right = _.rest(removed, j + 1);
