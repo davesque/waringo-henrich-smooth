@@ -155,10 +155,11 @@ function rootMeanSquareError(points, start, end) {
 
 /**
  * Smooths a piecewise linear path described by a list of 2D points to within
- * the specified maximum deviation `dLim`.
+ * the specified maximum deviation `dLim`.  The value `maxSteps` may be
+ * optionally specified to limit the number of iterations when the algorithm is
+ * run.
  */
 function waringoHenrichSmooth(points, dLim, maxSteps) {
-  var steps;
   var smallest;
   var removable, remaining;
 
@@ -179,7 +180,7 @@ function waringoHenrichSmooth(points, dLim, maxSteps) {
   // Get all inner points
   removable = points.slice(1, -1);
 
-  for ( steps = 0; !maxSteps || steps < maxSteps; steps++ ) {
+  for ( var steps = 0; !maxSteps || steps < maxSteps; steps++ ) {
     // Find remaining points which have not been marked for removal
     remaining = _.filter(removable, isNotRemoved);
 
