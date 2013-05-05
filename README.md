@@ -28,5 +28,5 @@ expect(waringoHenrichSmooth(points, 100)).toEqual([{x: 0, y: 0}, {x: 15, y: 0}])
 
 ## License
 
-Copyright (c) 2013 Fusionbox
+Copyright (c) 2013 Fusionbox  
 Licensed under the Fusionbox license.
