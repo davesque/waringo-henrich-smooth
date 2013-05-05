@@ -1,4 +1,3 @@
-/*jshint es5: true*/
 /*globals describe, it, expect*/
 
 describe("waringoHenrichSmooth", function() {
