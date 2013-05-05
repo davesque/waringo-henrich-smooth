@@ -1,6 +1,5 @@
 /*globals Raphael, POINTS1, POINTS2, waringoHenrichSmooth*/
 
-
 function getEventMouseCoords(e) {
   var coords = {}, offset;
 
@@ -15,7 +14,6 @@ function getEventMouseCoords(e) {
   return coords;
 }
 
-
 function getCanvasCoords(paper, coords) {
   var m = paper.canvas.getScreenCTM().inverse();
   var p = paper.canvas.createSVGPoint();
@@ -27,20 +25,13 @@ function getCanvasCoords(paper, coords) {
   return p;
 }
 
-
-var PAPER_WIDTH = 900;
-var PAPER_HEIGHT = 600;
-var DEFAULT_ZOOM = 2;
-var ZP_OPTIONS = {
-  minZoomFactor: 0.05,
-  maxZoomFactor: 100,
-  mouseWheelSensitivity: 0.1
-};
-
-
 $(document).ready(function() {
   var paper = new Raphael($("#paper")[0], 900, 600);
-  paper.setViewBox(-109.98332849343623, -8.400000945726937, 225, 150).ZP(ZP_OPTIONS);
+  paper.setViewBox(-109.98332849343623, -8.400000945726937, 225, 150).ZP({
+    minZoomFactor: 0.05,
+    maxZoomFactor: 100,
+    mouseWheelSensitivity: 0.1
+  });
 
   $(paper.canvas).mousemove(function(e) {
     var c = getCanvasCoords(paper, getEventMouseCoords(e));
