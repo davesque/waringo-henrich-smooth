@@ -3,7 +3,7 @@
 Functions for smoothing a path of 2D coordinates using the method described in
 the following article: 
 
-**Smoothing of Piecewise Linear Paths**
+**Smoothing of Piecewise Linear Paths**  
 Michel Waringo and Dominik Henrich  
 University of Bayreuth, Germany  
 International Journal of Advanced Robotic Systems, Vol.5, No. 3 (2008)
