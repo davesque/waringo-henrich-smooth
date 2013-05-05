@@ -1,7 +1,5 @@
 # waringo-henrich-smooth
 
-[![Build Status](https://travis-ci.org/davesque/waringo-henrich-smooth.png?branch=master)](https://travis-ci.org/davesque/waringo-henrich-smooth)
-
 Functions for smoothing a path of 2D coordinates using the method described in
 the following article: 
 
@@ -30,5 +28,5 @@ expect(waringoHenrichSmooth(points, 100)).toEqual([{x: 0, y: 0}, {x: 15, y: 0}])
 
 ## License
 
-Copyright (c) 2013 David Sanders  
-Licensed under the MIT license.
+Copyright (c) 2013 Fusionbox
+Licensed under the Fusionbox license.

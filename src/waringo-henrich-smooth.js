@@ -1,12 +1,15 @@
 /*globals _*/
 
-/*
+/**
  * waringo-henrich-smooth.js
- * https://github.com/davesque/waringo-henrich-smooth
+ * https://github.com/fusionbox/waringo-henrich-smooth
+ *
+ * Authors:
+ * David Sanders <davesque@gmail.com>
  *
  * Implementation code is subject to the following copyright and license:
- * Copyright (c) 2013 David Sanders
- * Licensed under the MIT license.
+ * Copyright (c) 2013 Fusionbox
+ * Licensed under the Fusionbox license.
  *
  * Functions for smoothing a path of 2D coordinates using the method described
  * in the following article:
