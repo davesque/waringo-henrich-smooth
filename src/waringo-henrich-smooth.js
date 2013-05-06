@@ -83,20 +83,15 @@ function pointToLineDistance(p1, p2, p3) {
 
 
 /**
- * Finds the indexes of neighboring, non-removed points for the point `p`
- * (object) or the point at index `p` (number) in the point list `points`.
+ * Finds the indexes of neighboring, non-removed points for the point `p` in
+ * the point list `points`.
  */
 function findNeighborhood(points, p) {
   var removed, left, right, i, j, k;
 
   if ( _.isEmpty(points) ) return [null, null];
 
-  if ( _.isNumber(p) ) j = p;
-  else j = p.i;
-
-  if ( j < 0 ) j = 0;
-  else if ( j >= points.length ) j = points.length - 1;
-
+  j = p.i;
   removed = _.pluck(points, "r");
 
   left = _.first(removed, j);
@@ -135,14 +130,13 @@ function rootMeanSquare(l) {
 function rootMeanSquareError(points, start, end) {
   if ( _.isEmpty(points) ) return NaN;
 
-  // Flip range indexes if start > end
+  // Flip range if start.i > end.i
   if ( start.i > end.i ) start = [end, end = start][0];
 
   // Get deviations for all points inside of the neighborhood's range
   var ds = [];
-  for ( var i = start.i + 1; i < end.i; i++ ) {
+  for ( var i = start.i + 1; i < end.i; i++ )
     ds.push(pointToLineDistance(start, points[i], end));
-  }
 
   // Return root mean square of point deviations
   return rootMeanSquare(ds);
@@ -157,40 +151,44 @@ function rootMeanSquareError(points, start, end) {
  */
 function waringoHenrichSmooth(points, dLim, maxSteps) {
   var smallest;
-  var removable, remaining;
+  var removable, remaining, neighborhood;
 
   // Helper functions
   function isNotRemoved(p) { return p.r === false; }
   function getDeviation(p) { return p.d; }
   function setDeviation(p) {
+    // Don't set deviation if p is null or if p is an end point
+    if ( !p || p.i === 0 || p.i === points.length - 1) return;
+
     var neighborhood = findNeighborhood(points, p);
     p.d = rootMeanSquareError(points, neighborhood[0], neighborhood[1]);
   }
 
-  // Copy the original path points
+  // Copy and annotate points
   points = _.map(points, _.clone);
-
-  // Mark all points as not having been removed and make note of their index
   _.each(points, function(p, i) { p.r = false; p.i = i; });
 
   // Get all inner points
   removable = points.slice(1, -1);
+  _.each(removable, setDeviation);
 
   for ( var steps = 0; !maxSteps || steps < maxSteps; steps++ ) {
-    // Find remaining points which have not been marked for removal
     remaining = _.filter(removable, isNotRemoved);
-
-    // If none left, quit smoothing
     if ( _.isEmpty(remaining) ) break;
 
-    // Calculate deviations and find point with smallest deviation
-    _.each(remaining, setDeviation);
+    // Find point with smallest deviation
     smallest = _.min(remaining, getDeviation);
 
-    // Remove the point with the smallest deviation if that deviation is less
-    // than the limit.  Otherwise, quit smoothing.
-    if ( smallest.d < dLim ) smallest.r = true;
-    else break;
+    // Remove point with smallest deviation if deviation is less than the limit
+    // and update deviation of neighbors.  Otherwise, quit smoothing.
+    if ( smallest.d < dLim ) {
+      smallest.r = true;
+      neighborhood = findNeighborhood(points, smallest);
+      setDeviation(neighborhood[0]);
+      setDeviation(neighborhood[1]);
+    } else {
+      break;
+    }
   }
 
   // Return x and y coordinates for all remaining points
