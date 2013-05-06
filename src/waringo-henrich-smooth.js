@@ -125,7 +125,7 @@ function rootMeanSquare(l) {
 
 /**
  * Returns the root mean square deviation for the exclusive range
- * (neighborhood) of points specified by the given start and end indexes.
+ * (neighborhood) of points specified by the given start and end points.
  */
 function rootMeanSquareError(points, start, end) {
   if ( _.isEmpty(points) ) return NaN;
