@@ -58,7 +58,7 @@ $(document).ready(function() {
 
   function update() {
     var old = smoothedPoints.length;
-    smoothedPoints = waringoHenrichSmooth(smoothedPoints, 2, 10);
+    smoothedPoints = waringoHenrichSmooth(smoothedPoints, 2);
 
     smoothed.setNumericPath(smoothedPoints, {pathCommand: "R"});
 
