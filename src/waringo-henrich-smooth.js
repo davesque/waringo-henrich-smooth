@@ -89,7 +89,7 @@ function pointToLineDistance(p1, p2, p3) {
 function findNeighborhood(points, p) {
   var removed, left, right, i, j, k;
 
-  if ( _.isEmpty(points) ) return [-1, -1];
+  if ( _.isEmpty(points) ) return [null, null];
 
   if ( _.isNumber(p) ) j = p;
   else j = p.i;
@@ -107,7 +107,7 @@ function findNeighborhood(points, p) {
 
   if ( k !== -1 ) k += j + 1;
 
-  return [i, k];
+  return [i === -1 ? null : points[i], k === -1 ? null : points[k]];
 }
 
 
@@ -133,24 +133,18 @@ function rootMeanSquare(l) {
  * (neighborhood) of points specified by the given start and end indexes.
  */
 function rootMeanSquareError(points, start, end) {
-  if ( !points.length ) return NaN;
+  if ( _.isEmpty(points) ) return NaN;
 
   // Flip range indexes if start > end
-  if ( start > end ) start = [end, end = start][0];
-
-  // Limit range indexes
-  if ( start < 0 ) start = 0;
-  else if ( start >= points.length ) start = points.length - 1;
-  if ( end < 0 ) end = 0;
-  else if ( end >= points.length ) end = points.length - 1;
+  if ( start.i > end.i ) start = [end, end = start][0];
 
   // Get deviations for all points inside of the neighborhood's range
   var ds = [];
-  for ( var i = start + 1; i < end; i++ ) {
+  for ( var i = start.i + 1; i < end.i; i++ ) {
     ds.push(pointToLineDistance(
-      points[start],
+      start,
       points[i],
-      points[end]
+      end
     ));
   }
 
@@ -173,7 +167,7 @@ function waringoHenrichSmooth(points, dLim, maxSteps) {
   function isNotRemoved(p) { return p.r === false; }
   function getDeviation(p) { return p.d; }
   function setDeviation(p) {
-    var neighborhood = findNeighborhood(points, p.i);
+    var neighborhood = findNeighborhood(points, p);
     p.d = rootMeanSquareError(points, neighborhood[0], neighborhood[1]);
   }
 
