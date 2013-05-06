@@ -141,11 +141,7 @@ function rootMeanSquareError(points, start, end) {
   // Get deviations for all points inside of the neighborhood's range
   var ds = [];
   for ( var i = start.i + 1; i < end.i; i++ ) {
-    ds.push(pointToLineDistance(
-      start,
-      points[i],
-      end
-    ));
+    ds.push(pointToLineDistance(start, points[i], end));
   }
 
   // Return root mean square of point deviations
