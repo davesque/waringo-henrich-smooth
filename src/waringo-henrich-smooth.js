@@ -144,6 +144,26 @@ function rootMeanSquareError(points, start, end) {
 
 
 /**
+ * Returns the maximum deviation for the exclusive range (neighborhood) of
+ * points specified by the given start and end points.
+ */
+function maxError(points, start, end) {
+  if ( _.isEmpty(points) ) return NaN;
+
+  // Flip range if start.i > end.i
+  if ( start.i > end.i ) start = [end, end = start][0];
+
+  // Get deviations for all points inside of the neighborhood's range
+  var ds = [];
+  for ( var i = start.i + 1; i < end.i; i++ )
+    ds.push(pointToLineDistance(start, points[i], end));
+
+  // Return maximum point deviation
+  return _.max(ds);
+}
+
+
+/**
  * Smooths a piecewise linear path described by a list of 2D points to within
  * the specified maximum deviation `dLim`.  The value `maxSteps` may be
  * optionally specified to limit the number of iterations when the algorithm is
