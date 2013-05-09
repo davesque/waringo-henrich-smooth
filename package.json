@@ -2,23 +2,23 @@
   "name": "waringo-henrich-smooth",
   "description": "Functions for smoothing a path of 2D coordinates using the method described by Michel Waringo and Dominik Henrich.",
   "version": "0.1.0",
-  "homepage": "https://github.com/davesque/waringo-henrich-smooth",
+  "homepage": "https://github.com/fusionbox/waringo-henrich-smooth",
   "author": {
-    "name": "David Sanders",
-    "email": "davesque@gmail.com",
-    "url": "www.charlesdavidsanders.com"
+    "name": "Fusionbox",
+    "email": "programmers@fusionbox.com",
+    "url": "www.fusionbox.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/davesque/waringo-henrich-smooth.git"
+    "url": "git://github.com/fusionbox/waringo-henrich-smooth.git"
   },
   "bugs": {
-    "url": "https://github.com/davesque/waringo-henrich-smooth/issues"
+    "url": "https://github.com/fusionbox/waringo-henrich-smooth/issues"
   },
   "licenses": [
     {
       "type": "Fusionbox",
-      "url": "https://github.com/davesque/waringo-henrich-smooth/blob/master/LICENSE"
+      "url": "https://github.com/fusionbox/waringo-henrich-smooth/blob/master/LICENSE"
     }
   ],
   "main": "lib/waringo-henrich-smooth.js",
