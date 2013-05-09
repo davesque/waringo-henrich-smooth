@@ -6,7 +6,7 @@
  *
  * This code is licensed under the following BSD license:
  *
- * Copyright 2013-present David Sanders <davesque@gmail.com> (Slimming of functionality and updates to work with v2.1.0).  All rights reserved.
+ * Copyright 2013-present David Sanders <dsanders@fusionbox.com> (Slimming of functionality and updates to work with v2.1.0).  All rights reserved.
  * Copyright 2010 Chris Scott <christocracy@gmail.com> (Raphaël-ZPD integration with VEMap).  All rights reserved
  * Copyright 2010 Daniel Assange <somnidea@lemma.org> (Raphaël integration and extensions). All rights reserved.
  * Copyright 2009-2010 Andrea Leofreddi <a.leofreddi@itcharm.com> (original author). All rights reserved.

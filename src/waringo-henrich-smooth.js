@@ -5,7 +5,7 @@
  * https://github.com/fusionbox/waringo-henrich-smooth
  *
  * Authors:
- * David Sanders <davesque@gmail.com>
+ * David Sanders <dsanders@fusionbox.com>
  *
  * Implementation code is subject to the following copyright and license:
  * Copyright (c) 2013 Fusionbox
