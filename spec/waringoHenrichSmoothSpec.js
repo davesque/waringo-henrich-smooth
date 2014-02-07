@@ -174,40 +174,46 @@ describe("waringoHenrichSmooth", function() {
 
   it("should smooth paths to within the specified degree of error", function() {
     expect(waringoHenrichSmooth(POINTS2, 1)).toEqual([
-      { x: 31, y: 14 },
-      { x: 44, y: 17 },
-      { x: 54, y: 23 },
-      { x: 61, y: 31 },
-      { x: 66, y: 43 },
-      { x: 66, y: 58 },
-      { x: 58, y: 74 },
-      { x: 36, y: 93 },
-      { x: 16, y: 103 },
-      { x: -4, y: 109 },
-      { x: -44, y: 113 }
+      {x: 31, y: 14},
+      {x: 44, y: 17},
+      {x: 50, y: 20},
+      {x: 60, y: 29},
+      {x: 66, y: 43},
+      {x: 66, y: 58},
+      {x: 58, y: 74},
+      {x: 47, y: 85},
+      {x: 45, y: 85},
+      {x: 36, y: 93},
+      {x: 16, y: 103},
+      {x: 13, y: 103},
+      {x: 8, y: 106},
+      {x: -9, y: 110},
+      {x: -44, y: 113}
     ]);
     expect(waringoHenrichSmooth(POINTS2, 2)).toEqual([
-      { x: 31, y: 14 },
-      { x: 54, y: 23 },
-      { x: 66, y: 43 },
-      { x: 66, y: 58 },
-      { x: 58, y: 74 },
-      { x: 36, y: 93 },
-      { x: -4, y: 109 },
-      { x: -44, y: 113 }
+      {x: 31, y: 14},
+      {x: 50, y: 20},
+      {x: 60, y: 29},
+      {x: 66, y: 43},
+      {x: 66, y: 58},
+      {x: 58, y: 74},
+      {x: 36, y: 93},
+      {x: 16, y: 103},
+      {x: -9, y: 110},
+      {x: -44, y: 113}
     ]);
     expect(waringoHenrichSmooth(POINTS1, 30)).toEqual([
-      { x: 0, y: 0 },
-      { x: 198, y: 28 },
-      { x: 214, y: 100 },
-      { x: 326, y: 76 },
-      { x: 438, y: 124 },
-      { x: 502, y: 76 },
-      { x: 638, y: 140 }
+      {x: 0, y: 0},
+      {x: 198, y: 28},
+      {x: 214, y: 100},
+      {x: 326, y: 76},
+      {x: 438, y: 124},
+      {x: 502, y: 76},
+      {x: 638, y: 140}
     ]);
     expect(waringoHenrichSmooth(POINTS1, 60)).toEqual([
-      { x: 0, y: 0 },
-      { x: 638, y: 140 }
+      {x: 0, y: 0},
+      {x: 638, y: 140}
     ]);
   });
 
@@ -219,12 +225,12 @@ describe("waringoHenrichSmooth", function() {
 
   it("should always return only the first and last points in a list if a large enough error limit is given", function() {
     expect(waringoHenrichSmooth(POINTS2, 1000)).toEqual([
-      { x: 31, y: 14 },
-      { x: -44, y: 113 }
+      {x: 31, y: 14},
+      {x: -44, y: 113}
     ]);
     expect(waringoHenrichSmooth(POINTS1, 1000)).toEqual([
-      { x: 0, y: 0 },
-      { x: 638, y: 140 }
+      {x: 0, y: 0},
+      {x: 638, y: 140}
     ]);
   });
 });

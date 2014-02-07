@@ -181,7 +181,7 @@ function waringoHenrichSmooth(points, dLim, maxSteps) {
     if ( !p || p.i === 0 || p.i === points.length - 1) return;
 
     var neighborhood = findNeighborhood(points, p);
-    p.d = rootMeanSquareError(points, neighborhood[0], neighborhood[1]);
+    p.d = maxError(points, neighborhood[0], neighborhood[1]);
   }
 
   // Copy and annotate points
