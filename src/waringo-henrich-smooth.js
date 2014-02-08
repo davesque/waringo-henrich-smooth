@@ -178,7 +178,7 @@ function waringoHenrichSmooth(points, dLim, maxSteps) {
   function getDeviation(p) { return p.d; }
   function setDeviation(p) {
     // Don't set deviation if p is null or if p is an end point
-    if ( !p || p.i === 0 || p.i === points.length - 1) return;
+    if ( !p || p.i === 0 || p.i === points.length - 1 ) return;
 
     var neighborhood = findNeighborhood(points, p);
     p.d = maxError(points, neighborhood[0], neighborhood[1]);
