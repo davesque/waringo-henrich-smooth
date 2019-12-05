@@ -8,7 +8,7 @@ Michel Waringo and Dominik Henrich
 University of Bayreuth, Germany  
 International Journal of Advanced Robotic Systems, Vol.5, No. 3 (2008)
 
-<http://cdn.intechopen.com/pdfs/4283/InTech-Smoothing_of_piecewise_linear_paths.pdf>
+<https://journals.sagepub.com/doi/pdf/10.5772/5602>
 
 ## Usage
 
